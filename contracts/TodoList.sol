@@ -1,7 +1,6 @@
 pragma solidity 0.4.24;
 
 // a TodoList smart contract with the following features:
-
 // a Todo struct for a single Todo item (think about what you could store alongside a string 
 // for the item’s description: maybe some metadata like a due date, or who owns the item)
 // a container of Todos (an array or mapping)
