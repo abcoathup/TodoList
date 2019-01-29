@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.55% </span>
+        <span class="strong">46.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/11</span>
+        <span class='fraction'>7/15</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">71.43% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>5/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68% </span>
+        <span class="strong">55.88% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/25</span>
+        <span class='fraction'>19/34</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -93,7 +93,26 @@
 48
 49
 50
-51</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,21 +132,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,39 +184,58 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.24;
 &nbsp;
 // a TodoList smart contract with the following features:
-&nbsp;
 // a Todo struct for a single Todo item (think about what you could store alongside a string 
 // for the item’s description: maybe some metadata like a due date, or who owns the item)
 // a container of Todos (an array or mapping)
 // a function to add a new Todo
 // getters for some variables (get all todos, get a specific property of a single todo)
+//
+// Update your TodoList smart contract with the following new features:
+&nbsp;
+// add a boolean done property to your Todo struct
+// add an address property to your Todo struct to mark the owner
+// add a function modifier to restrict write access to some variables 
+// (e.g. let only the owner of a todo mark a todo done)
 &nbsp;
 contract TodoList {
   struct Todo {
+    address owner;
     string value;
-    bool active;
+    bool done;
   }
 &nbsp;
   mapping (uint =&gt; Todo) internal todoList;
 &nbsp;
   uint public todoCount = 0;
 &nbsp;
+  mo<span class="fstat-no" title="function not covered" >difier onlyTodoOwner(uint256 todoId) {</span>
+    require(todoList[todoCount].owner == msg.sender, "Only Todo owner can call this function.");
+    _;
+  }
+&nbsp;
   function addTodo(string memory value) public {
     to<span class="cstat-no" title="statement not covered" >doCount++;</span>
+    to<span class="cstat-no" title="statement not covered" >doList[todoCount].owner = msg.sender;</span>
     to<span class="cstat-no" title="statement not covered" >doList[todoCount].value = value;</span>
-    to<span class="cstat-no" title="statement not covered" >doList[todoCount].active = true;</span>
+    to<span class="cstat-no" title="statement not covered" >doList[todoCount].done = false;</span>
   }
   
-  function setTodoActive(uint256 todoId, bool active) public {
+  function setTodoDone(uint256 todoId, bool done) public onlyTodoOwner(todoId) {
     require(todoId &lt;= todoCount, "Todo doesn't exist");
 &nbsp;
-    to<span class="cstat-no" title="statement not covered" >doList[todoId].active = active;</span>
+    to<span class="cstat-no" title="statement not covered" >doList[todoId].done = done;</span>
   }
 &nbsp;
-  function setTodoValue(uint256 todoId, string memory value) public {
+  function setTodoValue(uint256 todoId, string memory value) public onlyTodoOwner(todoId) {
     require(todoId &lt;= todoCount, "Todo doesn't exist");
 &nbsp;
     to<span class="cstat-no" title="statement not covered" >doList[todoId].value = value;</span>
+  }
+&nbsp;
+  fu<span class="fstat-no" title="function not covered" >nction getTodoOwner(uint256 todoId) pu</span>blic view returns (address) {
+    re<span class="cstat-no" title="statement not covered" >quire(todoId &lt;= todoCount, "Todo doesn't exist");</span>
+&nbsp;
+    re<span class="cstat-no" title="statement not covered" >turn todoList[todoId].owner;</span>
   }
 &nbsp;
   function getTodoValue(uint256 todoId) public view returns (string memory) {
@@ -187,10 +244,10 @@ contract TodoList {
     return todoList[todoId].value;
   }
   
-  function getTodoActive(uint256 todoId) public view returns (bool) {
+  function getTodoDone(uint256 todoId) public view returns (bool) {
     require(todoId &lt;= todoCount, "Todo doesn't exist");
 &nbsp;
-    return todoList[todoId].active;
+    return todoList[todoId].done;
   }
 }
 &nbsp;</pre></td></tr>
@@ -199,7 +256,7 @@ contract TodoList {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 25 2019 12:40:03 GMT+1000 (GMT+10:00)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 29 2019 19:53:36 GMT+1000 (GMT+10:00)
 </div>
 </div>
 <script src="../prettify.js"></script>

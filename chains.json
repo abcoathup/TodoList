@@ -514,5 +514,61 @@
         "address": "0x0B527766aF2F31158aC3bBDb467C264CE655002C"
       }
     }
+  },
+  "0x104022a377f42386f41118afc923dfa19ce727a9c6d769c621336ea2f4367ca0": {
+    "contracts": {
+      "0x1fc1e9b70a4b320d909eec155c18303dcd4ee07c58d15ac270f3d1f50eb2fb79": {
+        "name": "TodoList",
+        "address": "0x0eEd03bA502190D920ed85c1debF61315FfFca5F"
+      }
+    }
+  },
+  "0xdf1fa27796e06defb477a0f4d7806773e3cd213e24c81cc151d66c36d555d5b4": {
+    "contracts": {
+      "0x1fc1e9b70a4b320d909eec155c18303dcd4ee07c58d15ac270f3d1f50eb2fb79": {
+        "name": "TodoList",
+        "address": "0xF759fEF8Eb6D0aADE6C057b1bAdE34db4489975D"
+      }
+    }
+  },
+  "0x24524203f839e7ae29ff47fd7dab102927ea5ba220d19ce90514e4c4c2623890": {
+    "contracts": {
+      "0x55567e1a45a4c2e3a93e899225968aab9d4a87f35d73abafd7e387df13210c34": {
+        "name": "TodoList",
+        "address": "0x1Ef5189a730e229764EEA6AB26dcb0dC98B146Cd"
+      }
+    }
+  },
+  "0xbf6ae71d4ff7b92ef9aa212c8571d3492ef522ddd445025527c685460d3e53bd": {
+    "contracts": {
+      "0xcffb5fd3519c8f63304755784b452f74d506b9153473e31f7b116f249e3b76be": {
+        "name": "TodoList",
+        "address": "0x9d86a3a65ba336FAFDf508482a22a1dA14818CA4"
+      }
+    }
+  },
+  "0xe1a010f2f4b6a14b0a1f98f8a814428484a046b293e12b9da3243a279669fa16": {
+    "contracts": {
+      "0xcffb5fd3519c8f63304755784b452f74d506b9153473e31f7b116f249e3b76be": {
+        "name": "TodoList",
+        "address": "0x329aA874Ad7363aca264F5E4B3DE14b4906eEa47"
+      }
+    }
+  },
+  "0xa9be36ba403776ba8116841bc3333253208aaccfdbf9d50d6387232018ac8488": {
+    "contracts": {
+      "0xcffb5fd3519c8f63304755784b452f74d506b9153473e31f7b116f249e3b76be": {
+        "name": "TodoList",
+        "address": "0xe02A865C3016f31BDb035df570F8019Fc1542a25"
+      }
+    }
+  },
+  "0x3599e5ab6c229f1ec042656de47533fe61be8307b948868b20d8c67dbf8f59e5": {
+    "contracts": {
+      "0xcffb5fd3519c8f63304755784b452f74d506b9153473e31f7b116f249e3b76be": {
+        "name": "TodoList",
+        "address": "0x1EBb0024Fe959DbB908d0957b1DC35D62a6cbAa6"
+      }
+    }
   }
 }

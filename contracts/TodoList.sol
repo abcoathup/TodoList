@@ -6,33 +6,53 @@ pragma solidity 0.4.24;
 // a container of Todos (an array or mapping)
 // a function to add a new Todo
 // getters for some variables (get all todos, get a specific property of a single todo)
+//
+// Update your TodoList smart contract with the following new features:
+
+// add a boolean done property to your Todo struct
+// add an address property to your Todo struct to mark the owner
+// add a function modifier to restrict write access to some variables 
+// (e.g. let only the owner of a todo mark a todo done)
 
 contract TodoList {
   struct Todo {
+    address owner;
     string value;
-    bool active;
+    bool done;
   }
 
   mapping (uint => Todo) internal todoList;
 
   uint public todoCount = 0;
 
+  modifier onlyTodoOwner(uint256 todoId) {
+    require(todoList[todoCount].owner == msg.sender, "Only Todo owner can call this function.");
+    _;
+  }
+
   function addTodo(string memory value) public {
     todoCount++;
+    todoList[todoCount].owner = msg.sender;
     todoList[todoCount].value = value;
-    todoList[todoCount].active = true;
+    todoList[todoCount].done = false;
   }
   
-  function setTodoActive(uint256 todoId, bool active) public {
+  function setTodoDone(uint256 todoId, bool done) public onlyTodoOwner(todoId) {
     require(todoId <= todoCount, "Todo doesn't exist");
 
-    todoList[todoId].active = active;
+    todoList[todoId].done = done;
   }
 
-  function setTodoValue(uint256 todoId, string memory value) public {
+  function setTodoValue(uint256 todoId, string memory value) public onlyTodoOwner(todoId) {
     require(todoId <= todoCount, "Todo doesn't exist");
 
     todoList[todoId].value = value;
+  }
+
+  function getTodoOwner(uint256 todoId) public view returns (address) {
+    require(todoId <= todoCount, "Todo doesn't exist");
+
+    return todoList[todoId].owner;
   }
 
   function getTodoValue(uint256 todoId) public view returns (string memory) {
@@ -41,9 +61,9 @@ contract TodoList {
     return todoList[todoId].value;
   }
   
-  function getTodoActive(uint256 todoId) public view returns (bool) {
+  function getTodoDone(uint256 todoId) public view returns (bool) {
     require(todoId <= todoCount, "Todo doesn't exist");
 
-    return todoList[todoId].active;
+    return todoList[todoId].done;
   }
 }

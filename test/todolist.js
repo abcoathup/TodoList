@@ -56,14 +56,14 @@ contract("TodoList", function () {
     assert.strictEqual(value, _value);
   })
 
-  it("should get a todo active", async function() {
+  it("should get a todo done", async function() {
     await TodoListInstance.methods.addTodo("Test").send();
 
-    let _active = await TodoListInstance.methods.getTodoActive(1).call();
-    assert.strictEqual(true, _active);
+    let _done = await TodoListInstance.methods.getTodoDone(1).call();
+    assert.strictEqual(false, _done);
   })
 
-  it("should update a todo value", async function() {
+  it("should update a todo value when owner", async function() {
     let value = "Update";
     
     await TodoListInstance.methods.addTodo("Test").send();
@@ -73,21 +73,21 @@ contract("TodoList", function () {
     assert.strictEqual(value, _value);
   })
 
-  it("should set a todo active to false", async function() {
+  it("should set a todo done to true when owner", async function() {
     await TodoListInstance.methods.addTodo("Test").send();
-    await TodoListInstance.methods.setTodoActive(1, false).send();
+    await TodoListInstance.methods.setTodoDone(1, true).send();
 
-    let _active = await TodoListInstance.methods.getTodoActive(1).call();
-    assert.strictEqual(false, _active);
+    let _done = await TodoListInstance.methods.getTodoDone(1).call();
+    assert.strictEqual(true, _done);
   })
 
-  it("should set a todo active to true", async function() {
+  it("should set a todo done to false when owner", async function() {
     await TodoListInstance.methods.addTodo("Test").send();
-    await TodoListInstance.methods.setTodoActive(1, false).send();
-    await TodoListInstance.methods.setTodoActive(1, true).send();
+    await TodoListInstance.methods.setTodoDone(1, true).send();
+    await TodoListInstance.methods.setTodoDone(1, false).send();
 
-    let _active = await TodoListInstance.methods.getTodoActive(1).call();
-    assert.strictEqual(true, _active);
+    let _active = await TodoListInstance.methods.getTodoDone(1).call();
+    assert.strictEqual(false, _active);
   })
 
   it("should fail to get a todo value for a todo that doesn't exist", async function() {
@@ -96,17 +96,30 @@ contract("TodoList", function () {
     await shouldFail.reverting(TodoListInstance.methods.getTodoValue(2).call());
   })
 
-  it("should fail to get a todo active for a todo that doesn't exist", async function() {
+  it("should fail to get a todo done for a todo that doesn't exist", async function() {
     await TodoListInstance.methods.addTodo("Test").send();
 
-    await shouldFail.reverting(TodoListInstance.methods.getTodoActive(2).call());
+    await shouldFail.reverting(TodoListInstance.methods.getTodoDone(2).call());
   })
 
   it("should fail to update a todo value for a todo that doesn't exist", async function() {
     await shouldFail.reverting(TodoListInstance.methods.setTodoValue(1, "Update").send());
   })
 
-  it("should fail to update a todo active for a todo that doesn't exist", async function() {
-    await shouldFail.reverting(TodoListInstance.methods.setTodoActive(1, false).send());
+  it("should fail to update a todo done for a todo that doesn't exist", async function() {
+    await shouldFail.reverting(TodoListInstance.methods.setTodoDone(1, true).send());
   })
+
+  it("should fail to update a todo value when not owner", async function() {
+    let value = "Update";
+    
+    await TodoListInstance.methods.addTodo("Test").send();
+    await shouldFail.reverting(TodoListInstance.methods.setTodoValue(1, value).send({from:accounts[2]}));
+  })
+
+  it("should fail to set a todo done to true when not owner", async function() {
+    await TodoListInstance.methods.addTodo("Test").send();
+    await shouldFail.reverting(TodoListInstance.methods.setTodoDone(1, true).send({from:accounts[2]}));
+  })
+
 });
